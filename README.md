@@ -1,7 +1,44 @@
 # acdh-xml-validator
 
-A python package to validate XML file using against custom schema and schematron files. 
 
+A Python package for validating XML files against RelaxNG and Schematron schemas.
+This module provides a Validator class that can validate XML documents using
+both RelaxNG (.rng) and Schematron (.sch) schemas, particularly useful for
+TEI (Text Encoding Initiative) XML documents.
+
+
+## Usage
+
+```python
+import glob
+from acdh_xml_validator import Validator
+
+
+validator = Validator(
+    path_to_rng="test/schemata/tillich-briefe.rng",
+    path_to_schematon="test/schemata/tillich-schematron.sch"
+)
+
+files = glob.glob("test/xmls/*.xml")
+
+for x in files:
+    valid = validator.validate(x)
+```
+
+result:
+```shell
+test/xmls/L00003.xml is not valid according to test/schemata/tillich-briefe.rng schema
+  - test/xmls/L00003.xml:120:0:ERROR:RELAXNGV:RELAXNG_ERR_ELEMNAME: Expecting element idno, got rs
+  - test/xmls/L00003.xml:119:0:ERROR:RELAXNGV:RELAXNG_ERR_ELEMNAME: Expecting element dateline, got signed
+  - test/xmls/L00003.xml:119:0:ERROR:RELAXNGV:RELAXNG_ERR_ELEMWRONG: Did not expect element signed there
+  - test/xmls/L00003.xml:87:0:ERROR:RELAXNGV:RELAXNG_ERR_ELEMWRONG: Did not expect element p there
+  - test/xmls/L00003.xml:119:0:ERROR:RELAXNGV:RELAXNG_ERR_EXTRACONTENT: Element div has extra content: closer
+  - test/xmls/L00003.xml:79:0:ERROR:RELAXNGV:RELAXNG_ERR_CONTENTVALID: Element text failed to validate content
+test/xmls/L00107.xml is not valid according to test/schemata/tillich-schematron.sch
+  - The @ref attribute for rs type @bible must start with a captial letter or with a number
+  - The @ref attribute for rs type @bible must start with a captial letter or with a number
+  - The @ref attribute for rs type @bible must start with a captial letter or with a number
+```
 
 ## develop
 
