@@ -9,8 +9,18 @@ authors = [
 requires-python = ">=3.10"
 dependencies = [
     "acdh-tei-pyutils>=1.6",
+    "click>=8.2.1",
     "pyschematron>=0.1.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/acdh-oeaw/acdh-xml-validator"
+Issues = "https://github.com/acdh-oeaw/acdh-xml-validator/issues"
+
+[project.scripts]
+validate-all = "acdh_xml_validator.cli:validate_all"
+validate-rng = "acdh_xml_validator.cli:validate_rng"
+validate-schematron = "acdh_xml_validator.cli:validate_schematron"
 
 [build-system]
 requires = ["uv_build>=0.8.0,<0.9"]

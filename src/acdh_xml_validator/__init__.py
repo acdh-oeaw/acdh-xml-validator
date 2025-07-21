@@ -11,7 +11,7 @@ Example:
 
     >>> validator = Validator(
     ...     path_to_rng="schema.rng",
-    ...     path_to_schematon="rules.sch",
+    ...     path_to_schematron="rules.sch",
     ...     verbose=True
     ... )
     >>> is_valid = validator.validate("document.xml")
@@ -52,7 +52,7 @@ class Validator:
         >>> # Validate against both RelaxNG and Schematron
         >>> validator = Validator(
         ...     path_to_rng="schema.rng",
-        ...     path_to_schematon="rules.sch"
+        ...     path_to_schematron="rules.sch"
         ... )
         >>> is_valid = validator.validate("document.xml")
 
@@ -61,13 +61,13 @@ class Validator:
         >>> is_valid = rng_validator.validate_against_rng("document.xml")
     """
 
-    def __init__(self, path_to_rng=None, path_to_schematon=None, verbose=True):
+    def __init__(self, path_to_rng=None, path_to_schematron=None, verbose=True):
         """Initialize the Validator with schema files.
 
         Args:
             path_to_rng (str, optional): Path to the RelaxNG schema file (.rng).
                 If None, RelaxNG validation will be skipped.
-            path_to_schematon (str, optional): Path to the Schematron schema file (.sch).
+            path_to_schematron (str, optional): Path to the Schematron schema file (.sch).
                 If None, Schematron validation will be skipped.
             verbose (bool, optional): Whether to print detailed validation messages
                 and errors. Defaults to True.
@@ -85,11 +85,11 @@ class Validator:
             self.path_to_rng = path_to_rng
         else:
             self.path_to_rng = False
-        if path_to_schematon:
-            schematron_path = Path(path_to_schematon)
+        if path_to_schematron:
+            schematron_path = Path(path_to_schematron)
             schematron_schema = load_xml_document(schematron_path)
             self.schematron_schema = schematron_schema
-            self.path_to_schematron = path_to_schematon
+            self.path_to_schematron = path_to_schematron
         else:
             self.schematron_schema = False
             self.path_to_schematron = False
