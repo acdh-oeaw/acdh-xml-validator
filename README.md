@@ -1,10 +1,21 @@
 # acdh-xml-validator
 
-
 A Python package for validating XML files against RelaxNG and Schematron schemas.
 This module provides a Validator class that can validate XML documents using
 both RelaxNG (.rng) and Schematron (.sch) schemas, particularly useful for
 TEI (Text Encoding Initiative) XML documents.
+
+## Installation
+
+```shell
+pip install acdh-xml-validator
+```
+
+or 
+
+```shell
+uv add acdh-xml-validator`
+```
 
 
 ## Usage (CLI)
