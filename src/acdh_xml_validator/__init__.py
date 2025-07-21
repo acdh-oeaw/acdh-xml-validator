@@ -1,2 +1,2 @@
 def hello() -> str:
-    return "Hello from acdh-xml-validator!"
+    return "Hello you from acdh-xml-validator!"

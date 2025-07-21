@@ -1,14 +1,23 @@
 [project]
 name = "acdh-xml-validator"
 version = "0.1.0"
-description = "Add your description here"
+description = "A python package to validate XML file using against custom schema and schematron files."
 readme = "README.md"
 authors = [
-    { name = "csae8092", email = "p.andorfer@gmail.com" }
+    { name = "Peter Andorfer", email = "p.andorfer@gmail.com" }
 ]
-requires-python = ">=3.9"
-dependencies = []
+requires-python = ">=3.10"
+dependencies = [
+    "acdh-tei-pyutils>=1.6",
+    "pyschematron>=0.1.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.8.0,<0.9"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "ruff>=0.12.4",
+]
