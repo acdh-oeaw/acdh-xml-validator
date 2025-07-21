@@ -7,7 +7,25 @@ both RelaxNG (.rng) and Schematron (.sch) schemas, particularly useful for
 TEI (Text Encoding Initiative) XML documents.
 
 
-## Usage
+## Usage (CLI)
+
+### RNG and Schematron
+```shell
+uv run validate-all --files "data/editions/*.xml" --rng "schemata/rng.rng" --schematron "schemata/schematron.sch"
+```
+
+### RNG
+```shell
+uv run validate-rng --files "data/editions/*.xml" --rng "schemata/rng.rng"
+```
+
+### SCHEMATRON
+```shell
+uv run validate-schematron --files "data/editions/*.xml" --schematron "schemata/schematron.sch"
+```
+
+
+## Usage (Python)
 
 ```python
 import glob
@@ -15,11 +33,11 @@ from acdh_xml_validator import Validator
 
 
 validator = Validator(
-    path_to_rng="test/schemata/tillich-briefe.rng",
-    path_to_schematon="test/schemata/tillich-schematron.sch"
+    path_to_rng="schemata/rng.rng",
+    path_to_schematon="schemata/schematron.sch"
 )
 
-files = glob.glob("test/xmls/*.xml")
+files = glob.glob("data/editions/*.xml")
 
 for x in files:
     valid = validator.validate(x)
@@ -27,7 +45,7 @@ for x in files:
 
 result:
 ```shell
-test/xmls/L00003.xml is not valid according to test/schemata/tillich-briefe.rng schema
+test/xmls/L00003.xml is not valid according to test/schemata/rng.rng schema
   - test/xmls/L00003.xml:120:0:ERROR:RELAXNGV:RELAXNG_ERR_ELEMNAME: Expecting element idno, got rs
   - test/xmls/L00003.xml:119:0:ERROR:RELAXNGV:RELAXNG_ERR_ELEMNAME: Expecting element dateline, got signed
   - test/xmls/L00003.xml:119:0:ERROR:RELAXNGV:RELAXNG_ERR_ELEMWRONG: Did not expect element signed there
