@@ -69,7 +69,7 @@ def validate_all(files: str, rng: str, schematron: str) -> None:
         0: All files are valid
         1: One or more files failed validation
     """
-    files = glob.glob(files)
+    files = sorted(glob.glob(files))
     validator = Validator(path_to_rng=rng, path_to_schematron=schematron)
     results = set()
     for x in tqdm(files):
@@ -110,7 +110,7 @@ def validate_rng(files: str, rng: str) -> None:
         0: All files are valid according to RelaxNG schema
         1: One or more files failed RelaxNG validation
     """
-    files = glob.glob(files)
+    files = sorted(glob.glob(files))
     validator = Validator(path_to_rng=rng)
     results = set()
     for x in tqdm(files):
@@ -151,7 +151,7 @@ def validate_schematron(files: str, schematron: str) -> None:
         0: All files are valid according to Schematron schema
         1: One or more files failed Schematron validation
     """
-    files = glob.glob(files)
+    files = sorted(glob.glob(files))
     validator = Validator(path_to_schematron=schematron)
     results = set()
     for x in tqdm(files):
