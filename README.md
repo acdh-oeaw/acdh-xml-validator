@@ -14,7 +14,7 @@ pip install acdh-xml-validator
 or 
 
 ```shell
-uv add acdh-xml-validator`
+uv add acdh-xml-validator
 ```
 
 
